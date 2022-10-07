@@ -1,0 +1,24 @@
+
+edere_file_menu = menu(
+  item[ACTIVE="NO"]("New", cb_edere_new),
+  separator(),
+  item("Open", cb_edere_open),
+  item("Close", cb_edere_close),
+  item("Save", cb_edere_save),
+  item("Save as...", cb_edere_saveas),
+  separator(),
+  item("Import palette", cb_edere_pallete_load),
+  item("Export palette", cb_edere_pallete_save),
+  separator(),
+  item("Exit", cb_edere_exit)
+)
+
+edere_about_menu = menu(
+  item[MY_DIALOG="edere_about_dialog"]
+  ("About the program...", cb_edere_only_popup)
+)
+
+edere_main_menu = menu( 
+  submenu("File", edere_file_menu),
+  submenu("About", edere_about_menu)
+)
