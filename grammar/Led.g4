@@ -24,6 +24,10 @@ control
     | 'item'
     | 'dialog'
     | 'separator'
+    | 'fill'
+    | 'hbox'
+    | 'vbox'
+    | 'dialog'
     ;
 
 attributeName

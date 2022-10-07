@@ -16,9 +16,9 @@ public class LedParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, EQ=7, COMMA=8, SEMI=9, 
-		LPAREN=10, RPAREN=11, LSQUARE=12, RSQUARE=13, QUOTE=14, INT=15, ID=16, 
-		WS=17, NEWLINE=18, Q_STRING=19;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		EQ=10, COMMA=11, SEMI=12, LPAREN=13, RPAREN=14, LSQUARE=15, RSQUARE=16, 
+		QUOTE=17, INT=18, ID=19, WS=20, NEWLINE=21, Q_STRING=22;
 	public static final int
 		RULE_control = 0, RULE_attributeName = 1, RULE_attributeValue = 2, RULE_attribute = 3, 
 		RULE_attributeList = 4, RULE_attributeSection = 5, RULE_value = 6, RULE_valueList = 7, 
@@ -35,15 +35,16 @@ public class LedParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'menu'", "'submenu'", "'button'", "'item'", "'dialog'", "'separator'", 
-			"'='", "','", "';'", "'('", "')'", "'['", "']'", "'\"'"
+			"'fill'", "'hbox'", "'vbox'", "'='", "','", "';'", "'('", "')'", "'['", 
+			"']'", "'\"'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, "EQ", "COMMA", "SEMI", "LPAREN", 
-			"RPAREN", "LSQUARE", "RSQUARE", "QUOTE", "INT", "ID", "WS", "NEWLINE", 
-			"Q_STRING"
+			null, null, null, null, null, null, null, null, null, null, "EQ", "COMMA", 
+			"SEMI", "LPAREN", "RPAREN", "LSQUARE", "RSQUARE", "QUOTE", "INT", "ID", 
+			"WS", "NEWLINE", "Q_STRING"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -113,7 +114,7 @@ public class LedParser extends Parser {
 			{
 			setState(24);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -412,6 +413,9 @@ public class LedParser extends Parser {
 			case T__3:
 			case T__4:
 			case T__5:
+			case T__6:
+			case T__7:
+			case T__8:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(54);
@@ -669,28 +673,28 @@ public class LedParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\25\\\4\2\t\2\4\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\\\4\2\t\2\4\3"+
 		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13"+
 		"\4\f\t\f\4\r\t\r\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\7"+
 		"\6(\n\6\f\6\16\6+\13\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7\64\n\7\3\b\3\b"+
 		"\3\b\3\b\5\b:\n\b\3\t\3\t\3\t\7\t?\n\t\f\t\16\tB\13\t\3\n\3\n\3\n\3\n"+
 		"\3\n\3\n\5\nJ\n\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\r\7\rU\n\r\f\r"+
 		"\16\rX\13\r\3\r\3\r\3\r\2\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\4\3\2\3"+
-		"\b\4\2\21\22\25\25\2X\2\32\3\2\2\2\4\34\3\2\2\2\6\36\3\2\2\2\b \3\2\2"+
+		"\13\4\2\24\25\30\30\2X\2\32\3\2\2\2\4\34\3\2\2\2\6\36\3\2\2\2\b \3\2\2"+
 		"\2\n$\3\2\2\2\f\63\3\2\2\2\169\3\2\2\2\20;\3\2\2\2\22I\3\2\2\2\24K\3\2"+
 		"\2\2\26O\3\2\2\2\30V\3\2\2\2\32\33\t\2\2\2\33\3\3\2\2\2\34\35\t\3\2\2"+
-		"\35\5\3\2\2\2\36\37\t\3\2\2\37\7\3\2\2\2 !\5\4\3\2!\"\7\t\2\2\"#\5\6\4"+
-		"\2#\t\3\2\2\2$)\5\b\5\2%&\7\n\2\2&(\5\b\5\2\'%\3\2\2\2(+\3\2\2\2)\'\3"+
-		"\2\2\2)*\3\2\2\2*\13\3\2\2\2+)\3\2\2\2,-\7\16\2\2-.\5\n\6\2./\7\17\2\2"+
-		"/\64\3\2\2\2\60\61\7\16\2\2\61\64\7\17\2\2\62\64\3\2\2\2\63,\3\2\2\2\63"+
-		"\60\3\2\2\2\63\62\3\2\2\2\64\r\3\2\2\2\65:\7\22\2\2\66:\7\21\2\2\67:\7"+
-		"\25\2\28:\5\24\13\29\65\3\2\2\29\66\3\2\2\29\67\3\2\2\298\3\2\2\2:\17"+
-		"\3\2\2\2;@\5\16\b\2<=\7\n\2\2=?\5\16\b\2><\3\2\2\2?B\3\2\2\2@>\3\2\2\2"+
-		"@A\3\2\2\2A\21\3\2\2\2B@\3\2\2\2CD\7\f\2\2DE\5\20\t\2EF\7\r\2\2FJ\3\2"+
-		"\2\2GH\7\f\2\2HJ\7\r\2\2IC\3\2\2\2IG\3\2\2\2J\23\3\2\2\2KL\5\2\2\2LM\5"+
-		"\f\7\2MN\5\22\n\2N\25\3\2\2\2OP\7\22\2\2PQ\7\t\2\2QR\5\24\13\2R\27\3\2"+
-		"\2\2SU\5\26\f\2TS\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3\2\2\2WY\3\2\2\2XV\3"+
-		"\2\2\2YZ\7\2\2\3Z\31\3\2\2\2\b)\639@IV";
+		"\35\5\3\2\2\2\36\37\t\3\2\2\37\7\3\2\2\2 !\5\4\3\2!\"\7\f\2\2\"#\5\6\4"+
+		"\2#\t\3\2\2\2$)\5\b\5\2%&\7\r\2\2&(\5\b\5\2\'%\3\2\2\2(+\3\2\2\2)\'\3"+
+		"\2\2\2)*\3\2\2\2*\13\3\2\2\2+)\3\2\2\2,-\7\21\2\2-.\5\n\6\2./\7\22\2\2"+
+		"/\64\3\2\2\2\60\61\7\21\2\2\61\64\7\22\2\2\62\64\3\2\2\2\63,\3\2\2\2\63"+
+		"\60\3\2\2\2\63\62\3\2\2\2\64\r\3\2\2\2\65:\7\25\2\2\66:\7\24\2\2\67:\7"+
+		"\30\2\28:\5\24\13\29\65\3\2\2\29\66\3\2\2\29\67\3\2\2\298\3\2\2\2:\17"+
+		"\3\2\2\2;@\5\16\b\2<=\7\r\2\2=?\5\16\b\2><\3\2\2\2?B\3\2\2\2@>\3\2\2\2"+
+		"@A\3\2\2\2A\21\3\2\2\2B@\3\2\2\2CD\7\17\2\2DE\5\20\t\2EF\7\20\2\2FJ\3"+
+		"\2\2\2GH\7\17\2\2HJ\7\20\2\2IC\3\2\2\2IG\3\2\2\2J\23\3\2\2\2KL\5\2\2\2"+
+		"LM\5\f\7\2MN\5\22\n\2N\25\3\2\2\2OP\7\25\2\2PQ\7\f\2\2QR\5\24\13\2R\27"+
+		"\3\2\2\2SU\5\26\f\2TS\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3\2\2\2WY\3\2\2\2"+
+		"XV\3\2\2\2YZ\7\2\2\3Z\31\3\2\2\2\b)\639@IV";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
