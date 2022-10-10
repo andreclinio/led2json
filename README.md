@@ -9,5 +9,5 @@ $ antlr4 -Dlanguage=Dart grammar/Led.g4 -o lib/
 
 
 ```
-$ dart bin/led2json.dart samples/edere_menu.led
+$ dart bin/led2json.dart samples/tests/edere_menu.led outputs/edere_menu.json
 ```

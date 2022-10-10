@@ -12,10 +12,15 @@ QUOTE : '"' ;
 
 INT : [0-9]+ ;
 ID : [a-zA-Z_][a-zA-Z_0-9]* ;
+STRING : [a-zA-Z_0-9]+;
 WS : [ \t]+ -> skip ;
 NEWLINE : [\r\n]+ -> skip;
 
 Q_STRING : QUOTE ~["\r\n]* QUOTE ; 
+
+LINE_COMMENT
+    : '#' ~[\r\n\u0085\u2028\u2029]* -> channel(HIDDEN)
+    ;
 
 control
     : 'menu'
@@ -28,6 +33,12 @@ control
     | 'hbox'
     | 'vbox'
     | 'dialog'
+    | 'label'
+    | 'frame'
+    | 'toggle'
+    | 'zbox'
+    | 'text'
+    | 'radio'
     ;
 
 attributeName
@@ -40,6 +51,7 @@ attributeValue
     : ID
     | INT
     | Q_STRING
+    | STRING
     ;
 
 attribute
@@ -60,6 +72,7 @@ value
     | INT
     | Q_STRING
     | instance
+    | handle
     ;
 
 valueList

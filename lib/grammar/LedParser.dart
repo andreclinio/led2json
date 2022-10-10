@@ -4,8 +4,6 @@ import 'package:antlr4/antlr4.dart';
 
 import 'LedListener.dart';
 import 'LedBaseListener.dart';
-import 'LedVisitor.dart';
-import 'LedBaseVisitor.dart';
 const int RULE_control = 0, RULE_attributeName = 1, RULE_attributeValue = 2, 
           RULE_attribute = 3, RULE_attributeList = 4, RULE_attributeSection = 5, 
           RULE_value = 6, RULE_valueList = 7, RULE_valueSection = 8, RULE_instance = 9, 
@@ -19,10 +17,13 @@ class LedParser extends Parser {
   static final PredictionContextCache _sharedContextCache = PredictionContextCache();
   static const int TOKEN_T__0 = 1, TOKEN_T__1 = 2, TOKEN_T__2 = 3, TOKEN_T__3 = 4, 
                    TOKEN_T__4 = 5, TOKEN_T__5 = 6, TOKEN_T__6 = 7, TOKEN_T__7 = 8, 
-                   TOKEN_T__8 = 9, TOKEN_EQ = 10, TOKEN_COMMA = 11, TOKEN_SEMI = 12, 
-                   TOKEN_LPAREN = 13, TOKEN_RPAREN = 14, TOKEN_LSQUARE = 15, 
-                   TOKEN_RSQUARE = 16, TOKEN_QUOTE = 17, TOKEN_INT = 18, 
-                   TOKEN_ID = 19, TOKEN_WS = 20, TOKEN_NEWLINE = 21, TOKEN_Q_STRING = 22;
+                   TOKEN_T__8 = 9, TOKEN_T__9 = 10, TOKEN_T__10 = 11, TOKEN_T__11 = 12, 
+                   TOKEN_T__12 = 13, TOKEN_T__13 = 14, TOKEN_T__14 = 15, 
+                   TOKEN_EQ = 16, TOKEN_COMMA = 17, TOKEN_SEMI = 18, TOKEN_LPAREN = 19, 
+                   TOKEN_RPAREN = 20, TOKEN_LSQUARE = 21, TOKEN_RSQUARE = 22, 
+                   TOKEN_QUOTE = 23, TOKEN_INT = 24, TOKEN_ID = 25, TOKEN_STRING = 26, 
+                   TOKEN_WS = 27, TOKEN_NEWLINE = 28, TOKEN_Q_STRING = 29, 
+                   TOKEN_LINE_COMMENT = 30;
 
   @override
   final List<String> ruleNames = [
@@ -33,13 +34,15 @@ class LedParser extends Parser {
 
   static final List<String?> _LITERAL_NAMES = [
       null, "'menu'", "'submenu'", "'button'", "'item'", "'dialog'", "'separator'", 
-      "'fill'", "'hbox'", "'vbox'", "'='", "','", "';'", "'('", "')'", "'['", 
-      "']'", "'\"'"
+      "'fill'", "'hbox'", "'vbox'", "'label'", "'frame'", "'toggle'", "'zbox'", 
+      "'text'", "'radio'", "'='", "','", "';'", "'('", "')'", "'['", "']'", 
+      "'\"'"
   ];
   static final List<String?> _SYMBOLIC_NAMES = [
-      null, null, null, null, null, null, null, null, null, null, "EQ", 
-      "COMMA", "SEMI", "LPAREN", "RPAREN", "LSQUARE", "RSQUARE", "QUOTE", 
-      "INT", "ID", "WS", "NEWLINE", "Q_STRING"
+      null, null, null, null, null, null, null, null, null, null, null, 
+      null, null, null, null, null, "EQ", "COMMA", "SEMI", "LPAREN", "RPAREN", 
+      "LSQUARE", "RSQUARE", "QUOTE", "INT", "ID", "STRING", "WS", "NEWLINE", 
+      "Q_STRING", "LINE_COMMENT"
   ];
   static final Vocabulary VOCABULARY = VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -71,7 +74,7 @@ class LedParser extends Parser {
       enterOuterAlt(_localctx, 1);
       state = 24;
       _la = tokenStream.LA(1)!;
-      if (!(((_la) & ~0x3f) == 0 && ((1 << _la) & 1022) != 0)) {
+      if (!(((_la) & ~0x3f) == 0 && ((1 << _la) & 65534) != 0)) {
       errorHandler.recoverInline(this);
       } else {
         if ( tokenStream.LA(1)! == IntStream.EOF ) matchedEOF = true;
@@ -96,7 +99,7 @@ class LedParser extends Parser {
       enterOuterAlt(_localctx, 1);
       state = 26;
       _la = tokenStream.LA(1)!;
-      if (!(((_la) & ~0x3f) == 0 && ((1 << _la) & 4980736) != 0)) {
+      if (!(((_la) & ~0x3f) == 0 && ((1 << _la) & 587202560) != 0)) {
       errorHandler.recoverInline(this);
       } else {
         if ( tokenStream.LA(1)! == IntStream.EOF ) matchedEOF = true;
@@ -121,7 +124,7 @@ class LedParser extends Parser {
       enterOuterAlt(_localctx, 1);
       state = 28;
       _la = tokenStream.LA(1)!;
-      if (!(((_la) & ~0x3f) == 0 && ((1 << _la) & 4980736) != 0)) {
+      if (!(((_la) & ~0x3f) == 0 && ((1 << _la) & 654311424) != 0)) {
       errorHandler.recoverInline(this);
       } else {
         if ( tokenStream.LA(1)! == IntStream.EOF ) matchedEOF = true;
@@ -231,39 +234,34 @@ class LedParser extends Parser {
     dynamic _localctx = ValueContext(context, state);
     enterRule(_localctx, 12, RULE_value);
     try {
-      state = 55;
+      state = 56;
       errorHandler.sync(this);
-      switch (tokenStream.LA(1)!) {
-      case TOKEN_ID:
+      switch (interpreter!.adaptivePredict(tokenStream, 2, context)) {
+      case 1:
         enterOuterAlt(_localctx, 1);
         state = 51;
         match(TOKEN_ID);
         break;
-      case TOKEN_INT:
+      case 2:
         enterOuterAlt(_localctx, 2);
         state = 52;
         match(TOKEN_INT);
         break;
-      case TOKEN_Q_STRING:
+      case 3:
         enterOuterAlt(_localctx, 3);
         state = 53;
         match(TOKEN_Q_STRING);
         break;
-      case TOKEN_T__0:
-      case TOKEN_T__1:
-      case TOKEN_T__2:
-      case TOKEN_T__3:
-      case TOKEN_T__4:
-      case TOKEN_T__5:
-      case TOKEN_T__6:
-      case TOKEN_T__7:
-      case TOKEN_T__8:
+      case 4:
         enterOuterAlt(_localctx, 4);
         state = 54;
         instance();
         break;
-      default:
-        throw NoViableAltException(this);
+      case 5:
+        enterOuterAlt(_localctx, 5);
+        state = 55;
+        handle();
+        break;
       }
     } on RecognitionException catch (re) {
       _localctx.exception = re;
@@ -281,17 +279,17 @@ class LedParser extends Parser {
     int _la;
     try {
       enterOuterAlt(_localctx, 1);
-      state = 57;
+      state = 58;
       value();
-      state = 62;
+      state = 63;
       errorHandler.sync(this);
       _la = tokenStream.LA(1)!;
       while (_la == TOKEN_COMMA) {
-        state = 58;
-        match(TOKEN_COMMA);
         state = 59;
+        match(TOKEN_COMMA);
+        state = 60;
         value();
-        state = 64;
+        state = 65;
         errorHandler.sync(this);
         _la = tokenStream.LA(1)!;
       }
@@ -309,23 +307,23 @@ class LedParser extends Parser {
     dynamic _localctx = ValueSectionContext(context, state);
     enterRule(_localctx, 16, RULE_valueSection);
     try {
-      state = 71;
+      state = 72;
       errorHandler.sync(this);
       switch (interpreter!.adaptivePredict(tokenStream, 4, context)) {
       case 1:
         enterOuterAlt(_localctx, 1);
-        state = 65;
-        match(TOKEN_LPAREN);
         state = 66;
-        valueList();
+        match(TOKEN_LPAREN);
         state = 67;
+        valueList();
+        state = 68;
         match(TOKEN_RPAREN);
         break;
       case 2:
         enterOuterAlt(_localctx, 2);
-        state = 69;
-        match(TOKEN_LPAREN);
         state = 70;
+        match(TOKEN_LPAREN);
+        state = 71;
         match(TOKEN_RPAREN);
         break;
       }
@@ -344,11 +342,11 @@ class LedParser extends Parser {
     enterRule(_localctx, 18, RULE_instance);
     try {
       enterOuterAlt(_localctx, 1);
-      state = 73;
-      control();
       state = 74;
-      attributeSection();
+      control();
       state = 75;
+      attributeSection();
+      state = 76;
       valueSection();
     } on RecognitionException catch (re) {
       _localctx.exception = re;
@@ -365,11 +363,11 @@ class LedParser extends Parser {
     enterRule(_localctx, 20, RULE_handle);
     try {
       enterOuterAlt(_localctx, 1);
-      state = 77;
-      match(TOKEN_ID);
       state = 78;
-      match(TOKEN_EQ);
+      match(TOKEN_ID);
       state = 79;
+      match(TOKEN_EQ);
+      state = 80;
       instance();
     } on RecognitionException catch (re) {
       _localctx.exception = re;
@@ -387,17 +385,17 @@ class LedParser extends Parser {
     int _la;
     try {
       enterOuterAlt(_localctx, 1);
-      state = 84;
+      state = 85;
       errorHandler.sync(this);
       _la = tokenStream.LA(1)!;
       while (_la == TOKEN_ID) {
-        state = 81;
+        state = 82;
         handle();
-        state = 86;
+        state = 87;
         errorHandler.sync(this);
         _la = tokenStream.LA(1)!;
       }
-      state = 87;
+      state = 88;
       match(TOKEN_EOF);
     } on RecognitionException catch (re) {
       _localctx.exception = re;
@@ -410,32 +408,33 @@ class LedParser extends Parser {
   }
 
   static const List<int> _serializedATN = [
-      4,1,22,90,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,
+      4,1,30,91,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,
       2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,1,0,1,0,1,1,1,1,1,2,1,
       2,1,3,1,3,1,3,1,3,1,4,1,4,1,4,5,4,38,8,4,10,4,12,4,41,9,4,1,5,1,5,
-      1,5,1,5,1,5,1,5,1,5,3,5,50,8,5,1,6,1,6,1,6,1,6,3,6,56,8,6,1,7,1,7,
-      1,7,5,7,61,8,7,10,7,12,7,64,9,7,1,8,1,8,1,8,1,8,1,8,1,8,3,8,72,8,8,
-      1,9,1,9,1,9,1,9,1,10,1,10,1,10,1,10,1,11,5,11,83,8,11,10,11,12,11,
-      86,9,11,1,11,1,11,1,11,0,0,12,0,2,4,6,8,10,12,14,16,18,20,22,0,2,1,
-      0,1,9,2,0,18,19,22,22,86,0,24,1,0,0,0,2,26,1,0,0,0,4,28,1,0,0,0,6,
-      30,1,0,0,0,8,34,1,0,0,0,10,49,1,0,0,0,12,55,1,0,0,0,14,57,1,0,0,0,
-      16,71,1,0,0,0,18,73,1,0,0,0,20,77,1,0,0,0,22,84,1,0,0,0,24,25,7,0,
-      0,0,25,1,1,0,0,0,26,27,7,1,0,0,27,3,1,0,0,0,28,29,7,1,0,0,29,5,1,0,
-      0,0,30,31,3,2,1,0,31,32,5,10,0,0,32,33,3,4,2,0,33,7,1,0,0,0,34,39,
-      3,6,3,0,35,36,5,11,0,0,36,38,3,6,3,0,37,35,1,0,0,0,38,41,1,0,0,0,39,
-      37,1,0,0,0,39,40,1,0,0,0,40,9,1,0,0,0,41,39,1,0,0,0,42,43,5,15,0,0,
-      43,44,3,8,4,0,44,45,5,16,0,0,45,50,1,0,0,0,46,47,5,15,0,0,47,50,5,
-      16,0,0,48,50,1,0,0,0,49,42,1,0,0,0,49,46,1,0,0,0,49,48,1,0,0,0,50,
-      11,1,0,0,0,51,56,5,19,0,0,52,56,5,18,0,0,53,56,5,22,0,0,54,56,3,18,
-      9,0,55,51,1,0,0,0,55,52,1,0,0,0,55,53,1,0,0,0,55,54,1,0,0,0,56,13,
-      1,0,0,0,57,62,3,12,6,0,58,59,5,11,0,0,59,61,3,12,6,0,60,58,1,0,0,0,
-      61,64,1,0,0,0,62,60,1,0,0,0,62,63,1,0,0,0,63,15,1,0,0,0,64,62,1,0,
-      0,0,65,66,5,13,0,0,66,67,3,14,7,0,67,68,5,14,0,0,68,72,1,0,0,0,69,
-      70,5,13,0,0,70,72,5,14,0,0,71,65,1,0,0,0,71,69,1,0,0,0,72,17,1,0,0,
-      0,73,74,3,0,0,0,74,75,3,10,5,0,75,76,3,16,8,0,76,19,1,0,0,0,77,78,
-      5,19,0,0,78,79,5,10,0,0,79,80,3,18,9,0,80,21,1,0,0,0,81,83,3,20,10,
-      0,82,81,1,0,0,0,83,86,1,0,0,0,84,82,1,0,0,0,84,85,1,0,0,0,85,87,1,
-      0,0,0,86,84,1,0,0,0,87,88,5,0,0,1,88,23,1,0,0,0,6,39,49,55,62,71,84
+      1,5,1,5,1,5,1,5,1,5,3,5,50,8,5,1,6,1,6,1,6,1,6,1,6,3,6,57,8,6,1,7,
+      1,7,1,7,5,7,62,8,7,10,7,12,7,65,9,7,1,8,1,8,1,8,1,8,1,8,1,8,3,8,73,
+      8,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,1,10,1,11,5,11,84,8,11,10,11,12,
+      11,87,9,11,1,11,1,11,1,11,0,0,12,0,2,4,6,8,10,12,14,16,18,20,22,0,
+      3,1,0,1,15,2,0,24,25,29,29,2,0,24,26,29,29,88,0,24,1,0,0,0,2,26,1,
+      0,0,0,4,28,1,0,0,0,6,30,1,0,0,0,8,34,1,0,0,0,10,49,1,0,0,0,12,56,1,
+      0,0,0,14,58,1,0,0,0,16,72,1,0,0,0,18,74,1,0,0,0,20,78,1,0,0,0,22,85,
+      1,0,0,0,24,25,7,0,0,0,25,1,1,0,0,0,26,27,7,1,0,0,27,3,1,0,0,0,28,29,
+      7,2,0,0,29,5,1,0,0,0,30,31,3,2,1,0,31,32,5,16,0,0,32,33,3,4,2,0,33,
+      7,1,0,0,0,34,39,3,6,3,0,35,36,5,17,0,0,36,38,3,6,3,0,37,35,1,0,0,0,
+      38,41,1,0,0,0,39,37,1,0,0,0,39,40,1,0,0,0,40,9,1,0,0,0,41,39,1,0,0,
+      0,42,43,5,21,0,0,43,44,3,8,4,0,44,45,5,22,0,0,45,50,1,0,0,0,46,47,
+      5,21,0,0,47,50,5,22,0,0,48,50,1,0,0,0,49,42,1,0,0,0,49,46,1,0,0,0,
+      49,48,1,0,0,0,50,11,1,0,0,0,51,57,5,25,0,0,52,57,5,24,0,0,53,57,5,
+      29,0,0,54,57,3,18,9,0,55,57,3,20,10,0,56,51,1,0,0,0,56,52,1,0,0,0,
+      56,53,1,0,0,0,56,54,1,0,0,0,56,55,1,0,0,0,57,13,1,0,0,0,58,63,3,12,
+      6,0,59,60,5,17,0,0,60,62,3,12,6,0,61,59,1,0,0,0,62,65,1,0,0,0,63,61,
+      1,0,0,0,63,64,1,0,0,0,64,15,1,0,0,0,65,63,1,0,0,0,66,67,5,19,0,0,67,
+      68,3,14,7,0,68,69,5,20,0,0,69,73,1,0,0,0,70,71,5,19,0,0,71,73,5,20,
+      0,0,72,66,1,0,0,0,72,70,1,0,0,0,73,17,1,0,0,0,74,75,3,0,0,0,75,76,
+      3,10,5,0,76,77,3,16,8,0,77,19,1,0,0,0,78,79,5,25,0,0,79,80,5,16,0,
+      0,80,81,3,18,9,0,81,21,1,0,0,0,82,84,3,20,10,0,83,82,1,0,0,0,84,87,
+      1,0,0,0,85,83,1,0,0,0,85,86,1,0,0,0,86,88,1,0,0,0,87,85,1,0,0,0,88,
+      89,5,0,0,1,89,23,1,0,0,0,6,39,49,56,63,72,85
   ];
 
   static final ATN _ATN =
@@ -452,14 +451,6 @@ class ControlContext extends ParserRuleContext {
   @override
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitControl(this);
-  }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitControl(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
   }
 }
 
@@ -478,20 +469,13 @@ class AttributeNameContext extends ParserRuleContext {
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitAttributeName(this);
   }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitAttributeName(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
-  }
 }
 
 class AttributeValueContext extends ParserRuleContext {
   TerminalNode? ID() => getToken(LedParser.TOKEN_ID, 0);
   TerminalNode? INT() => getToken(LedParser.TOKEN_INT, 0);
   TerminalNode? Q_STRING() => getToken(LedParser.TOKEN_Q_STRING, 0);
+  TerminalNode? STRING() => getToken(LedParser.TOKEN_STRING, 0);
   AttributeValueContext([ParserRuleContext? parent, int? invokingState]) : super(parent, invokingState);
   @override
   int get ruleIndex => RULE_attributeValue;
@@ -502,14 +486,6 @@ class AttributeValueContext extends ParserRuleContext {
   @override
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitAttributeValue(this);
-  }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitAttributeValue(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
   }
 }
 
@@ -527,14 +503,6 @@ class AttributeContext extends ParserRuleContext {
   @override
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitAttribute(this);
-  }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitAttribute(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
   }
 }
 
@@ -554,14 +522,6 @@ class AttributeListContext extends ParserRuleContext {
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitAttributeList(this);
   }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitAttributeList(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
-  }
 }
 
 class AttributeSectionContext extends ParserRuleContext {
@@ -579,14 +539,6 @@ class AttributeSectionContext extends ParserRuleContext {
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitAttributeSection(this);
   }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitAttributeSection(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
-  }
 }
 
 class ValueContext extends ParserRuleContext {
@@ -594,6 +546,7 @@ class ValueContext extends ParserRuleContext {
   TerminalNode? INT() => getToken(LedParser.TOKEN_INT, 0);
   TerminalNode? Q_STRING() => getToken(LedParser.TOKEN_Q_STRING, 0);
   InstanceContext? instance() => getRuleContext<InstanceContext>(0);
+  HandleContext? handle() => getRuleContext<HandleContext>(0);
   ValueContext([ParserRuleContext? parent, int? invokingState]) : super(parent, invokingState);
   @override
   int get ruleIndex => RULE_value;
@@ -604,14 +557,6 @@ class ValueContext extends ParserRuleContext {
   @override
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitValue(this);
-  }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitValue(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
   }
 }
 
@@ -631,14 +576,6 @@ class ValueListContext extends ParserRuleContext {
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitValueList(this);
   }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitValueList(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
-  }
 }
 
 class ValueSectionContext extends ParserRuleContext {
@@ -655,14 +592,6 @@ class ValueSectionContext extends ParserRuleContext {
   @override
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitValueSection(this);
-  }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitValueSection(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
   }
 }
 
@@ -681,14 +610,6 @@ class InstanceContext extends ParserRuleContext {
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitInstance(this);
   }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitInstance(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
-  }
 }
 
 class HandleContext extends ParserRuleContext {
@@ -706,14 +627,6 @@ class HandleContext extends ParserRuleContext {
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitHandle(this);
   }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitHandle(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
-  }
 }
 
 class LedContext extends ParserRuleContext {
@@ -730,14 +643,6 @@ class LedContext extends ParserRuleContext {
   @override
   void exitRule(ParseTreeListener listener) {
     if (listener is LedListener) listener.exitLed(this);
-  }
-  @override
-  T? accept<T>(ParseTreeVisitor<T> visitor) {
-    if (visitor is LedVisitor<T>) {
-     return visitor.visitLed(this);
-    } else {
-    	return visitor.visitChildren(this);
-    }
   }
 }
 

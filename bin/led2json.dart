@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:antlr4/antlr4.dart';
 import 'package:led2json/grammar/LedLexer.dart';
 import 'package:led2json/grammar/LedParser.dart';
@@ -7,14 +9,14 @@ import 'package:led2json/grammar/utils/stack.dart';
 import 'package:led2json/grammar/logic/logic.dart';
 
 class TreeShapeListener extends LedHelper {
-  final List<Handle> _handles = [];
   final Stack _stack = Stack();
+  final List<Handle> _handles = [];
+  String result = "";
 
   @override
   void exitAttribute(AttributeContext ctx) {
     final value = _stack.pop() as Value;
     final name = _stack.pop();
-    print("   ---  attr $name = $value");
     _stack.push(Attribute(name, value));
   }
 
@@ -26,7 +28,6 @@ class TreeShapeListener extends LedHelper {
       final child = ctx.attribute(i);
       if (child != null) attributes.add(_stack.pop() as Attribute);
     }
-    print("   ---  Attributes $attributes");
     _stack.push(attributes.reversed.toList());
   }
 
@@ -44,18 +45,20 @@ class TreeShapeListener extends LedHelper {
     final cId = ctx.ID();
     final cQString = ctx.Q_STRING();
     final cInt = ctx.INT();
+    final cString = ctx.STRING();
     String? value;
     if (cId != null) {
       value = cId.text!;
     } else if (cQString != null) {
       final text = cQString.text!;
       value = text.substring(1, text.length - 1);
+    } else if (cString != null) {
+      value = cString.text!;
     } else if (cInt != null) {
       value = cInt.text!;
     }
     if (value != null) {
-      print("   ---  attr-value $value");
-      _stack.push(Value(value, null));
+      _stack.push(Value(value, null, null));
     }
   }
 
@@ -65,8 +68,10 @@ class TreeShapeListener extends LedHelper {
     final cQString = ctx.Q_STRING();
     final cInt = ctx.INT();
     final cInstance = ctx.instance();
+    final cHandle = ctx.handle();
     String? value;
     Instance? instance;
+    Handle? handle;
     if (cId != null) {
       value = cId.text!;
     } else if (cQString != null) {
@@ -76,11 +81,12 @@ class TreeShapeListener extends LedHelper {
       value = cInt.text!;
     } else if (cInstance != null) {
       instance = _stack.pop();
+    } else if (cHandle != null) {
+      handle = _stack.pop();
     }
 
-    if (value != null || instance != null) {
-      print("   ---  value $value $instance");
-      _stack.push(Value(value, instance));
+    if (value != null || instance != null || handle != null) {
+      _stack.push(Value(value, instance, handle));
     }
   }
 
@@ -92,7 +98,6 @@ class TreeShapeListener extends LedHelper {
       final child = ctx.value(i);
       if (child != null) values.add(_stack.pop());
     }
-    print("   ---  values $values");
     _stack.push(values.reversed.toList());
   }
 
@@ -123,7 +128,6 @@ class TreeShapeListener extends LedHelper {
       attributes = [];
     }
     final controlName = ctrl!.text;
-    print("---> INSTANCE ${controlName} ${attributes} ${values}");
     final instance = Instance(controlName, attributes, values);
     _stack.push(instance);
   }
@@ -133,13 +137,15 @@ class TreeShapeListener extends LedHelper {
     final ntId = ctx.ID()!;
     final instance = _stack.pop() as Instance;
     final handleName = ntId.text!;
-    _handles.add(Handle(handleName, instance));
+    final handle = Handle(handleName, instance);
+    _handles.add(handle);
+    _stack.push(handle);
   }
 
   @override
   void exitLed(LedContext ctx) {
     final led = Led(_handles);
-    print(led.dump());
+    result = led.dump();
   }
 }
 
@@ -153,5 +159,9 @@ void main(List<String> args) async {
   parser.addErrorListener(DiagnosticErrorListener());
   parser.buildParseTree = true;
   final tree = parser.led();
-  ParseTreeWalker.DEFAULT.walk(TreeShapeListener(), tree);
+  final listener = TreeShapeListener();
+  ParseTreeWalker.DEFAULT.walk(listener, tree);
+
+  final output = File(args[1]);
+  output.writeAsString(listener.result);
 }

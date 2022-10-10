@@ -72,11 +72,18 @@ class Attribute {
 class Value {
   final String? value;
   final Instance? instance;
+  final Handle? handle;
 
-  Value(this.value, this.instance);
+  Value(this.value, this.instance, this.handle);
 
   String dump(int ident) {
-    return instance != null ? instance!.dump(ident) : '"$value"';
+    if (instance != null) {
+      return instance!.dump(ident);
+    } else if (handle != null) {
+      return '"${handle!.name}"';
+    } else {
+      return '"$value"';
+    }
   }
 
   @override

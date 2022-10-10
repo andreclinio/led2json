@@ -1,0 +1,479 @@
+
+##################################
+## Dialogo de Pontos Analogicos ##
+##################################
+
+##cor_dialogo_ana  = color(179, 179, 179)
+##cor_marcado_ana  = color( 32,  32, 204)
+##cor_alterado_ana = color(  0, 204, 204)
+
+titulo_box = hbox
+(  #{{{
+    fill(), descr_do_ponto = label[ _FGCOLOR="0 0 192", SIZE=200x11,
+                                    ALIGNMENT=ACENTER,
+                                    __FONT=COURIER_BOLD_14 ]("123456789012345678901234567890123456789012"),
+    fill()
+)  #}}}
+
+id_box = hbox[ALIGNMENT=ACENTER]
+(  #{{{
+  label[ SIZE=40x11, L_TITLE="LAB_ID" ]("Identificador"),
+  frame(
+    hbox(
+      nome_do_ponto = label[ _FGCOLOR="0 0 255", BGCOLOR="204 204 204",
+                             ALIGNMENT=ACENTER,
+                             SIZE=x11, EXPAND=HORIZONTAL,
+#                            RASTERSIZE=300x15,
+                             __FONT = COURIER_BOLD_14 ]("12345678901234567890123456789012")
+    )
+  )
+)  #}}}
+
+aor_box = hbox[ ALIGNMENT=ACENTER, VISIBLE=NO ]
+(  #{{{
+  label[ SIZE=x11 ]("AOR  "),
+  frame(
+    hbox(
+      aor_do_ponto = label[ BGCOLOR="204 204 204",
+                            ALIGNMENT=ACENTER, SIZE=x11, EXPAND=HORIZONTAL,
+                            __FONT=COURIER_BOLD_14 ]("AOR_DO_PONTO")
+    )
+  )
+)  #}}}
+
+aoi_box = hbox[ ALIGNMENT=ACENTER, VISIBLE=NO ]
+(  #{{{
+  label[ SIZE=x11 ]("AOI  "),
+  frame(
+    hbox(
+      aoi_do_ponto = label[ BGCOLOR="204 204 204",
+                            ALIGNMENT=ACENTER, SIZE=x11, EXPAND=HORIZONTAL ]("Importa")
+    )
+  )
+)  #}}}
+
+valor_box = hbox[ALIGNMENT=ACENTER]
+(  #{{{
+  label[ SIZE=40x11, L_TITLE="LAB_CURRENT_VALUE" ]("Valor Atual"),
+  frame(
+    hbox(
+      valor_atual = label[ _FGCOLOR="0 0 255", BGCOLOR="204 204 204",
+                           ALIGNMENT=ACENTER, RASTERSIZE=160x15,
+                           __FONT = HELVETICA_BOLD_14 ]("0.0")
+    )
+  )
+)  #}}}
+
+regiao_box = hbox[ALIGNMENT=ACENTER]
+(  #{{{
+  label[ SIZE=40x11, L_TITLE="LAB_REGION" ]("Região"),
+  frame(
+    hbox(
+      regiao_do_ponto = label[ BGCOLOR="204 204 204",
+                               ALIGNMENT=ACENTER, RASTERSIZE=160x15 ]("Advertência")
+    )
+  )
+)  #}}}
+
+ponto_box = frame
+(  #{{{
+  hbox(
+    fill(),
+    fill[SIZE=3](),
+    vbox(
+      fill[SIZE=4](),
+      id_box,
+      fill[SIZE=4](),
+      hbox[ALIGNMENT=ACENTER](
+        valor_box,
+        fill[SIZE=5](),
+        aor_box
+      ),
+      fill[SIZE=4](),
+      hbox[ALIGNMENT=ACENTER](
+        regiao_box,
+        fill[SIZE=5](),
+        aoi_box
+      ),
+      fill[SIZE=3]()
+    ),
+    fill[SIZE=3](),
+    fill()
+  )
+)  #}}}
+
+status_box = frame[ TITLE="Status", L_TITLE="LAB_STATUS" ]
+(  #{{{
+  hbox(
+    fill[SIZE=3](),
+    vbox(
+      fill(), hbox( check_fovar     = label[ IMAGE = checkbox_on ](""), label_fovar     = label[ L_TITLE="LAB_STATUS_FOVAR"        ]( " Fora de Varredura Local")),
+      fill(), hbox( check_manual    = label[ IMAGE = checkbox_on ](""), label_manual    = label[ L_TITLE="LAB_STATUS_MANUAL"       ]( " Manual Local")),
+      fill(), hbox( check_estimado  = label[ IMAGE = checkbox_on ](""), label_estimado  = label[ L_TITLE="LAB_STATUS_ESTIMADO"     ]( " Erro Grosseiro")),
+      fill(), hbox( check_falha     = label[ IMAGE = checkbox_on ](""), label_falha     = label[ L_TITLE="LAB_STATUS_FALHA"        ]( " Falha de Aquisição")),
+      fill(), hbox( check_nosup     = label[ IMAGE = checkbox_on ](""), label_nosup     = label[ L_TITLE="LAB_STATUS_NOSUP"        ]( " Não Supervisionado")),
+      fill(), hbox( check_naoinic   = label[ IMAGE = checkbox_on ](""), label_naoinic   = label[ L_TITLE="LAB_STATUS_NAOINIC"      ]( " Não Inicializado")),
+      fill(), hbox( check_invorig   = label[ IMAGE = checkbox_on ](""), label_invorig   = label[ L_TITLE="LAB_STATUS_INVORIG"      ]( " Inválido na Origem")),
+      fill(), hbox( check_fvorg     = label[ IMAGE = checkbox_on ](""), label_fvorg     = label[ L_TITLE="LAB_STATUS_FVORG"        ]( " Fora de Varredura na Origem")),
+      fill(), hbox( check_manorig   = label[ IMAGE = checkbox_on ](""), label_manorig   = label[ L_TITLE="LAB_STATUS_MANORIG"      ]( " Manual na Origem")),
+      fill(), hbox( check_estorig   = label[ IMAGE = checkbox_on ](""), label_estorig   = label[ L_TITLE="LAB_STATUS_ESTORIG"      ]( " Estimado na Origem")),
+      fill(), hbox( check_anrec     = label[ IMAGE = checkbox_on ](""), label_anrec     = label[ L_TITLE="LAB_STATUS_ANREC"        ]( " Alarme Não Reconhecido")),
+      fill(), hbox( check_ainib     = label[ IMAGE = checkbox_on ](""), label_ainib     = label[ L_TITLE="LAB_STATUS_AINIB"        ]( " Alarme Inibido")),
+      fill(), hbox( check_aurec     = label[ IMAGE = checkbox_on ](""), label_aurec     = label[ L_TITLE="LAB_STATUS_AUREC"        ]( " Auto-reconhecimento")),
+      fill(), hbox( check_calc      = label[ IMAGE = checkbox_on ](""), label_calc      = label[ L_TITLE="LAB_STATUS_CALC"         ]( " Ponto Calculado")),
+      fill(), hbox( check_fasor     = label[ IMAGE = checkbox_on ](""), label_fasor     = label[ L_TITLE="LAB_STATUS_PMU"          ]( " Unidade de Medição Fasorial")),
+      fill(), hbox( check_subst     = label[ IMAGE = checkbox_on ](""), label_subst     = label[ L_TITLE="LAB_STATUS_SUBST"        ]( " Substituído pelo Estimador")),
+      fill(), hbox( check_selexp    = label[ IMAGE = checkbox_on ](""), label_selexp    = label[ L_TITLE="LAB_STATUS_SELEXP"       ]( " Selecionado para Exportação")),
+      fill(), hbox( check_invrt     = label[ IMAGE = checkbox_on ](""), label_invrt     = label[ L_TITLE="LAB_STATUS_INVRT_SIGNAL" ]( " Sinal Invertido")),
+      fill(), hbox( check_lim_man   = label[ IMAGE = checkbox_on ](""), label_lim_man   = label[ L_TITLE="LAB_STATUS_LIM_MAN"      ]( " Limites Manuais")),
+      fill(), hbox( check_tempo_lim = label[ IMAGE = checkbox_on ](""), label_tempo_lim = label[ L_TITLE="LAB_STATUS_TEMPO_LIM", SIZE=104]( " Tempo excessivo fora de limites")),
+      fill(), hbox( check_razoa     = label[ IMAGE = checkbox_on ](""), label_razoa     = label[ L_TITLE="LAB_STATUS_RAZOA"        ](" Razoabilidade excedida")),
+      fill(), hbox( check_ncomis    = label[ IMAGE = checkbox_on ](""), label_ncomis    = label[ L_TITLE="LAB_STATUS_NCOMIS"       ](" Não Comissionado")),
+      fill()
+    ),
+    fill[SIZE=1]()
+  )
+)  #}}}
+
+limites_box = frame[ TITLE="Limites", L_TITLE="LAB_LIMITS" ]
+(  #{{{
+  hbox(
+    fill[SIZE=3](),
+    vbox(
+      fill(),
+      hbox[ALIGNMENT=ACENTER](
+        lim_sup_esc_tog   = toggle[ TXT="lim_sup_esc" ](" ", cb_outros),
+        label[ SIZE=20, ALIGNMENT=ARIGHT, L_TITLE="LAB_UPPER_LIMIT_PREFIX" ]("Sup. "),
+        label_lim_sup_esc = label[ __L_TITLE="LAB_SCALE_LIMIT" ]("Escala"),
+        fill(),
+        lim_sup_esc_zbox = zbox(
+          lim_sup_esc          = text[  SIZE=36x, TOG="lim_sup_esc_tog" ](cb_ana_edita_texto),
+          lim_sup_esc_readonly = label[ SIZE=36x, L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ]("")
+        ),
+        fill[SIZE=2](),
+        lim_sup_esc_orig = label[ TIP="Limite original", L_TIP="LAB_ORIGINAL_LIMIT", __FONT=COURIER_BOLD_12 ]("")
+      ),
+      fill[SIZE=1](),
+      fill(),
+      hbox[ALIGNMENT=ACENTER](
+        lim_sup_urg_tog   = toggle[ TXT="lim_sup_urg" ](" ", cb_outros),
+        label[ SIZE=20, ALIGNMENT=ARIGHT, L_TITLE="LAB_UPPER_LIMIT_PREFIX" ]("Sup. "),
+        label_lim_sup_urg = label("Urgência"),
+        fill(),
+        lim_sup_urg_zbox = zbox(
+          lim_sup_urg          = text[  SIZE=36x, TOG="lim_sup_urg_tog" ](cb_ana_edita_texto),
+          lim_sup_urg_readonly = label[ SIZE=36x, L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ]("")
+        ),
+        fill[SIZE=2](),
+        lim_sup_urg_orig = label[ TIP="Limite original", L_TIP="LAB_ORIGINAL_LIMIT", __FONT=COURIER_BOLD_12 ]("")
+      ),
+      fill(),
+      hbox[ALIGNMENT=ACENTER](
+        lim_sup_adv_tog   = toggle[ TXT="lim_sup_adv" ](" ", cb_outros),
+        label[ SIZE=20, ALIGNMENT=ARIGHT, L_TITLE="LAB_UPPER_LIMIT_PREFIX" ]("Sup. "),
+        label_lim_sup_adv = label("Advertência"),
+        fill(),
+        lim_sup_adv_zbox = zbox(
+          lim_sup_adv          = text[  SIZE=36x, TOG="lim_sup_adv_tog" ](cb_ana_edita_texto),
+          lim_sup_adv_readonly = label[ SIZE=36x, L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ]("")
+        ),
+        fill[SIZE=2](),
+        lim_sup_adv_orig = label[ TIP="Limite original", L_TIP="LAB_ORIGINAL_LIMIT", __FONT=COURIER_BOLD_12 ]("")
+      ),
+      fill(),
+      hbox[ALIGNMENT=ACENTER](
+        lim_inf_adv_tog   = toggle[ TXT="lim_inf_adv" ](" ", cb_outros),
+        label[ SIZE=20, ALIGNMENT=ARIGHT, L_TITLE="LAB_LOWER_LIMIT_PREFIX" ]("Inf. "),
+        label_lim_inf_adv = label("Advertência"),
+        fill(),
+        lim_inf_adv_zbox = zbox(
+          lim_inf_adv          = text[  SIZE=36x, TOG="lim_inf_adv_tog" ](cb_ana_edita_texto),
+          lim_inf_adv_readonly = label[ SIZE=36x, L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ]("")
+        ),
+        fill[SIZE=2](),
+        lim_inf_adv_orig = label[ TIP="Limite original", L_TIP="LAB_ORIGINAL_LIMIT", __FONT=COURIER_BOLD_12 ]("")
+      ),
+      fill(),
+      hbox[ALIGNMENT=ACENTER](
+        lim_inf_urg_tog   = toggle[ TXT="lim_inf_urg" ](" ", cb_outros),
+        label[ SIZE=20, ALIGNMENT=ARIGHT, L_TITLE="LAB_LOWER_LIMIT_PREFIX" ]("Inf. "),
+        label_lim_inf_urg = label("Urgência"),
+        fill(),
+        lim_inf_urg_zbox = zbox(
+          lim_inf_urg          = text[  SIZE=36x, TOG="lim_inf_urg_tog" ](cb_ana_edita_texto),
+          lim_inf_urg_readonly = label[ SIZE=36x, L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ]("")
+        ),
+        fill[SIZE=2](),
+        lim_inf_urg_orig = label[ TIP="Limite original", L_TIP="LAB_ORIGINAL_LIMIT", __FONT=COURIER_BOLD_12 ]("")
+      ),
+      fill(),
+      fill[SIZE=1](),
+      hbox[ALIGNMENT=ACENTER](
+        lim_inf_esc_tog   = toggle[ TXT="lim_inf_esc" ](" ", cb_outros),
+        label[ SIZE=20, ALIGNMENT=ARIGHT, L_TITLE="LAB_LOWER_LIMIT_PREFIX" ]("Inf. "),
+        label_lim_inf_esc = label[ __L_TITLE="LAB_SCALE_LIMIT" ]("Escala"),
+        fill(),
+        lim_inf_esc_zbox = zbox(
+          lim_inf_esc          = text[ SIZE=36x, TOG="lim_inf_esc_tog" ](cb_ana_edita_texto),
+          lim_inf_esc_readonly = label[ SIZE=36x, L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ]("")
+        ),
+        fill[SIZE=2](),
+        lim_inf_esc_orig = label[ TIP="Limite original", L_TIP="LAB_ORIGINAL_LIMIT", __FONT=COURIER_BOLD_12 ]("")
+      ),
+      fill[SIZE=12](),
+      fill(),
+      restaurar_lim_zbox = zbox(
+        restaurar_limites_tog  = toggle[ SIZE=x14, L_TITLE="LAB_RESTORE_ORIGINAL_LIMITS" ]("Restaurar Limites Originais", cb_restaurar_limites),
+        restaurar_lim_readonly = label[ EXPAND=HORIZONTAL, ALIGNMENT=ACENTER, L_TITLE="LAB_LIMITS_CHANGE_LOCKED" ]("(bloqueada alteração de limites)")
+      ),
+      fill()
+    ),
+    fill[SIZE=3]()
+  )
+)  #}}}
+
+entrada_manual_box = frame[ TITLE="Entrada Manual", L_TITLE="LAB_MANUAL_ENTRY" ]
+(  #{{{
+  vbox(
+    fill(),
+    hbox[ALIGNMENT=ACENTER](
+      fill[SIZE=1](),
+      faz_entrada_man = toggle[ TXT="entrada_manual" ](" ", cb_faz_entr_man),
+      entrada_manual  = text[ TXT="entrada_manual", SIZE=36x ](cb_escolhe_entr_man),
+      label[ VISIBLE=NO ](" % "),
+      fill()
+    ),
+    fill[SIZE=3](),
+    fill()
+  )
+)  #}}}
+
+histerese_box = frame[ TITLE="Histerese", L_TITLE="LAB_HISTERESIS" ]
+(  #{{{
+  vbox(
+    fill(),
+    hbox[ALIGNMENT=ACENTER](
+      fill[SIZE=1](),
+      hister_tog = toggle[ TXT="histerese" ](" ", cb_outros),
+      histerese  = text[ TOG="hister_tog", SIZE=36x ](cb_ana_edita_texto),
+      label[ VISIBLE=NO ](" % "),
+      fill()
+    ),
+    fill[SIZE=3](),
+    fill()
+  )
+)  #}}}
+
+taxa_var_box = frame[ TITLE="Taxa de Variação", L_TITLE="LAB_VARIATION_RATE" ]
+(  #{{{
+  vbox(
+    fill(),
+    hbox[ALIGNMENT=ACENTER](
+      fill[SIZE=1](),
+      taxa_var_tog = toggle[ TXT="taxa_var" ](" ", cb_outros),
+      taxa_var     = text[ TOG="taxa_var_tog", SIZE=36x ](cb_ana_edita_texto),
+      label( " % " ),
+      fill()
+    ),
+    fill[SIZE=3](), fill()
+  )
+)  #}}}
+
+bndmo_box = frame[ TITLE="Banda morta", L_TITLE="LAB_DEADBAND" ]
+ (  #{{{
+  hbox[ ALIGNMENT=ACENTER ](
+    fill(),
+    vbox(
+      fill(), bndmo = label("0.0"),
+      fill()
+    ),
+    fill()
+  )
+)  #}}}
+
+varredura_box = frame[ TITLE="Varredura", L_TITLE="LAB_ACQUISITION" ]
+(  #{{{
+  hbox(
+    fill[SIZE=1](),
+    vbox(
+      fill(), hab_inib_var = toggle[ TXT="entrada_manual" ]("Habilitar Varredura", cb_hab_inib_var),
+      fill()
+    ),
+    fill()
+  )
+)  #}}}
+
+alarme_box = frame[ TITLE="Alarme", L_TITLE="LAB_ALARM" ]
+(  #{{{
+  hbox(
+    fill[SIZE=3](),
+    vbox(
+      fill(), hab_inib_alr   = toggle("Habilitar Alarme",              cb_outros),
+      fill(), hab_inib_aurec = toggle("Habilitar Auto-reconhecimento", cb_outros),
+      fill()
+    ),
+    fill()
+  )
+)  #}}}
+
+invrt_box = frame[ TITLE="Sinal", L_TITLE="LAB_SIGNAL" ]
+(  #{{{
+  hbox(
+    fill[SIZE=1](),
+    vbox(
+      fill(), invrt_sinal = toggle("Inverter Sinal ", cb_outros),
+      fill()
+    ),
+    fill()
+  )
+)  #}}}
+
+exportacao_box = frame[ TITLE="Histórico", L_TITLE="LAB_HISTORY" ]
+(  #{{{
+  hbox(
+    fill[SIZE=1](),
+    vbox(
+      fill(), sel_export = toggle("Exportar ", cb_outros),
+      fill()
+    ),
+    fill()
+  )
+)  #}}}
+
+kconv_box = frame[ TITLE="Fator de Conv.", L_TITLE="LAB_CONVERSION_FACTOR" ]
+(  #{{{
+  vbox(
+    fill(),
+    hbox[ALIGNMENT=ACENTER](
+      fill[SIZE=1](),
+      kconv_tog = toggle[ TXT="kconv1" ](" ", cb_outros),
+      kconv_zbox = zbox(
+        kconv_readwrite = vbox(
+          kconv1 = text[ SIZE=36x, TOG="kconv_tog", L_TIP="TIP_CONVERSION_FACTOR", TIP="Alterações só são aplicadas automaticamente\nem pontos dos protocolos i101, i104 e DNP3" ](cb_ana_edita_texto), fill[SIZE=3](),
+          kconv2 = text[ SIZE=36x, TOG="kconv_tog", L_TIP="TIP_CONVERSION_FACTOR", TIP="Alterações só são aplicadas automaticamente\nem pontos dos protocolos i101, i104 e DNP3" ](cb_ana_edita_texto)
+        ),
+        kconv_readonly = vbox[ L_TIP="NO_PERMISSION_TO_CHANGE", TIP="Sem permissão para alterar" ](
+          kconv1_readonly = label[ SIZE=36x ](""), fill[SIZE=3](),
+          kconv2_readonly = label[ SIZE=36x ]("")
+        )
+      ),
+      fill[SIZE=3](),
+      fill()
+    ),
+    fill[SIZE=3](),
+    fill[SIZE=3](),  # Ajuste para alinhar base dos frames alarme_box e kconv_box
+    fill()
+  )
+)  #}}}
+
+comis_box = frame[ TITLE="Comissionado", L_TITLE="LAB_COMMISSIONED", COMIS_ATUAL="SIM" ]
+(  #{{{
+  vbox(
+    fill(),
+    radio (
+      hbox(
+        fill(), comis_sim = toggle[ COMIS_NOVO="SIM", L_TITLE="YES" ]("Sim ", cb_comissionado_sim),
+        fill(), comis_nao = toggle[ COMIS_NOVO="NAO", L_TITLE="NO"  ]("Não ", cb_comissionado_nao),
+        fill()
+      )
+    ),
+    fill()
+  )
+)  #}}}
+
+coment_box = frame[ L_TITLE="TIT_POINT_COMMENT", TITLE = "Comentário" ]
+(  #{{{
+  vbox(
+    box_coment_old = hbox[ALIGNMENT=ACENTER](
+      fill[SIZE=1](), toggle[VISIBLE=NO](" ", cb_null), fill[SIZE=2](),
+      point_coment_old = label[ EXPAND=HORIZONTAL, SIZE=x11 ](""),
+      fill[RASTERSIZE=3](),
+      point_repete_coment = button[ L_TITLE="REPEAT_COMMENT", L_TIP="TIP_REPEAT_COMMENT", SIZE=x13 ]("repetir", cb_repete_coment),
+      fill[RASTERSIZE=5]()
+    ),
+    hbox[ALIGNMENT=ACENTER](
+      fill[SIZE=1](),
+      point_coment_tog = toggle[ TXT="point_coment" ](" ", cb_faz_coment),
+      point_coment     = text[ TOG="point_coment_tog", EXPAND=HORIZONTAL ](cb_ana_edita_texto),
+      fill[RASTERSIZE=5]()
+    ),
+    fill[SIZE=3](), fill()
+  )
+)  #}}}
+
+## Cria o label dlg_msg com uma string grande para reservar espaco para as mensagens ##
+msg_box = hbox
+(  #{{{
+    fill[SIZE=3](),
+    dlg_msg = label[ EXPAND=HORIZONTAL, SIZE=x13, FGCOLOR="128 0 0" ]
+       ( "12345678901234567890123456789012345678901234567890123456789012345678901234567890" ),
+    fill()
+)  #}}}
+
+Analogico = dialog[
+  TITLE        = "Ponto Analógico",
+  L_TITLE      = "LAB_ANALOG_POINT",
+  ICON         = BMP_vtelas,
+  PARENTDIALOG = main_dialog,
+  MENUBOX      = NO,
+  MINBOX       = NO,
+  MAXBOX       = NO,
+  RESIZE       = NO,
+  __FONT         = HELVETICA_BOLD_14,
+  FGCOLOR      = "0 0 0",
+  BGCOLOR      = "179 179 179",
+  DEFAULTENTER = botao_ok_ana,
+  DEFAULTESC   = cancelar_ana,
+  K_CR         = cb_ok_ana,
+  K_ESC        = cb_fechar,
+  CLOSE_CB     = cb_fechar ]
+(  #{{{
+ vbox(
+  hbox(
+    fill[SIZE=3](),
+    vbox(
+      fill[SIZE=4](), titulo_box,
+      fill[SIZE=1](),
+      hbox(
+        vbox(
+          fill[SIZE=3](),  # Ajuste para alinhar topo dos frames ponto_box (sem titulo) e entrada_manual_box (com titulo)
+          ponto_box, fill[SIZE=3](),
+          hbox(
+            status_box, fill[SIZE=3](),
+            vbox(
+              limites_box, fill[SIZE=3](),
+              alarme_box
+            )
+          )
+        ),
+        fill[SIZE=3](),
+        vbox(
+          entrada_manual_box, fill[SIZE=3](),
+          varredura_box,      fill[SIZE=3](),
+          invrt_box,          fill[SIZE=3](),
+          exportacao_box,     fill[SIZE=3](),
+          comis_box,          fill[SIZE=3](),
+          bndmo_box,          fill[SIZE=3](),
+          histerese_box,      fill[SIZE=3](),
+          taxa_var_box,       fill[SIZE=3](),
+          kconv_box
+        )
+      ),
+      place_coment = vbox(
+        fill[SIZE=3]()
+      ),
+      fill[SIZE=5](),
+      hbox(
+        fill(),
+        fill[SIZE=10](), botao_ok_ana = button[ SIZE=50x, L_TITLE="OK"     ](" OK ",     cb_ok_ana),
+        fill[SIZE=10](), cancelar_ana = button[ SIZE=50x, L_TITLE="CANCEL" ]("Cancelar", cb_fechar),
+        fill[SIZE=10](),
+        fill()
+      )
+    ),
+    fill[SIZE=3]()
+  ),
+  msg_box
+ )
+)  #}}}
+
